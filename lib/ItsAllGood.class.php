@@ -9,6 +9,8 @@ class ItsAllGood {
     private $moduleDir = "./modules/"; // Where modules can be found
     private $selfName = "Core"; // What the log's env will read for self
 
+    public $version = "0.1"; // The verison
+
     public function __construct($config){
         $this->config = $config;
 	$this->log = new Logging($this->config['logFile'], 2);
@@ -99,6 +101,10 @@ class ItsAllGood {
             $this->modules = array_map(array($this, "module_cleaner"), $this->modules);
         }
         return $this->modules;
+    }
+
+    public function product_version(){
+	return 'ItsAllGood v'.$this->version;
     }
 }
 

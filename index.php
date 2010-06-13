@@ -39,6 +39,7 @@ if(strpos($_SERVER['HTTP_USER_AGENT'], 'Pingdom') !== false){
 	<title>It's All Good</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="robots" content="noindex" />
+	<meta name="generator" content="<?php echo htmlentities($itsAllGood->product_version()); ?>"/>
 	<style type="text/css">
 		body { 
 			font-family: helvetica;
