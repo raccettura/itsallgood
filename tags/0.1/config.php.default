@@ -1,0 +1,65 @@
+<?php
+
+$config = array();
+
+$config['checks'] = array();
+
+$config['checks']['cpu'] = array(
+    'type' => 'CPU_Load',
+    'config' => array(
+        'maxCPU' => 3.0
+    ),
+    'label' => 'CPU Load'
+);
+
+
+$config['checks']['disk'] = array(
+    'type' => 'Disk_Usage',
+    'config' => array(
+        'threshold' => '85%',
+        'volume' => '/'
+    ),
+    'label' => 'Disk Usage'
+);
+
+
+/*
+$config['checks']['db'] = array(
+    'type' => 'MySQL',
+    'config' => array(
+        'method' => 'socket',
+      //'server' => 'localhost', 
+      //'port' => '3306',
+        'username' => 'itsallgood',
+        'password' => 'YOUR_PASSWORD',
+        'database' => 'itsallgood'
+    ),
+    'label' => 'MySQL'
+);
+*/
+
+/*
+$config['checks']['smtp'] = array(
+    'type' => 'SMTP_Ping',
+    'config' => array(
+        'hostname' => 'mail.yourdomain.com',
+        'port' => '25',
+        'timeout' => '15'
+    ),
+    'label' => 'SMTP Server'
+);
+*/
+
+/*
+$config['checks']['https-yourdomain-com'] = array(
+    'type' => 'HTTP',
+    'config' => array(
+        'url' => 'https://www.yourdomain.com/',
+        'contains' => 'Test'
+    ),
+    'label' => 'https for www.yourdomain.com'
+);
+*/
+
+$config['logFile'] = '/var/log/itsallgood/event_log';
+?>
