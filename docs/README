@@ -1,0 +1,102 @@
+Its All Good
+http://code.google.com/p/itsallgood/
+By: Robert Accettura <http://robert.accettura.com>
+
+About
+--------------------------------
+Its All Good is a simple framework for writing tests that can be read
+by bots to monitor server usage.  It's perfect for services like Pingdom 
+when you want to check the status of a server and not only see if it's 
+responding but if certain services are running within specific 
+parameters.
+
+The framework is pretty simple and flexible so you can easily write modules that 
+can be dropped into the application and configured via the standard config file.  
+Some basic ones are included as a starting point and you should feel welcome to 
+contribute ones that you write so that the community can benefit and help maintain
+and improve.
+
+
+Installation
+--------------------------------
+1.  Upload to web accessible directory
+2.  Modify config file as necessary
+  a. Configure which modules you want to modify (explanation below).  Most are commented out by default.
+  b. Point log file to correct location (bottom of config file)
+  c. Make sure log file permissions are so that it's writable by php 
+     (generally whatever user apache runs as, nobody, www, www-data, etc.)
+  d. Recommended: setup logrotate (see docs/logrotate.d for example) to prevent logs from getting
+     too big.
+  e. Rename config.php.default to config.php
+3.  Help write better documentation ;-)
+
+
+Config File
+--------------------------------
+An entry, which corresponds to one specific test  in the config file looks like this:
+$config['checks']['UNIQUE INDEX'] = array(
+    'type' => 'TYPE',
+    'config' => array(
+        'OPTION' => 'VALUE',
+        'OPTION2' => 'VALUE2'
+        ...
+    ),
+    'label' => 'LABEL'
+);
+
+UNIQUE INDEX - this is a unique index, alphanumerical.
+TYPE - this is the check type you want to use
+OPTION/VALUE - each check can have an unlimited number of options, these are set here
+LABEL - for the frontend, just a label so you can read quickly.
+
+
+API
+--------------------------------
+/* tests always start with 'Check_' and extend CheckBase */
+class Check_TEST_NAME extends CheckBase {
+
+    public function about(){
+        // Some basic metadata we can query
+        $about = array(
+            'title' => 'NAME',
+            'author' => 'YOUR NAME',
+            'url' => 'URL FOR PLUGIN',
+            'description' => 'DESCRIPTION',
+        );
+        return $about;
+    }
+
+    protected $config = array(
+        'option' => 'default value'
+    );
+
+    public function check(){
+        // If test fails, return false
+        if($this->test()){
+            return false;
+        }
+        // Otherwise the system is good
+        return true;
+    }
+
+    public function get_values(){
+        // Get the value(s) for this test
+        return $value;
+    }
+}
+
+The CheckBase class modules extend contains a log() method which can be used for dumping info to the standard log file:
+    _log($message, $verbosity)
+
+    Args:
+        $messge = the message you want to save
+        $verbosity = 1 - info, 2 - detail, 3 - debug
+
+Changelog
+--------------------------------
+0.1 - 06/12/2010
+ - Initial Release of source code
+
+License
+--------------------------------
+See license.txt
