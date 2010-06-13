@@ -1,0 +1,28 @@
+#summary Overview
+
+= What it's for =
+
+It's All Good is designed to be a simple dashboard like monitor for viewing the status of various aspects of your server.  For example it can monitor your CPU usage, disk usage, check your MySQL server is running, HTTP/HTTPS server, mail server status, etc.
+
+It's got a special hook for [http://www.pingdom.com Pingdom] so that you can point Pingdom to the page.  If any of the services It's All Good monitors are failing, it will return a failure notice to Pingdom and Pingdom will alert you as you request.  This can save you money by allowing you to have less Pingdom monitors on your server.
+
+= Requirements =
+  * PHP 5 or later (5.2+ strongly recommended)
+  * Linux/BSD/Solaris webserver (Windows currently isn't supported).
+
+= Setup =
+
+Here's the basics of how to install
+  * Download and extract the tarball on your server somewhere web accessible.
+  * Edit `config.php.default` as desired, you'll need to uncomment the blocks you want.  See `docs/readme` for a more detailed explanation.
+  * Rename `config.php.default` to `config.php`.
+  * Browse to the directory with your web browser.
+
+That should be it.
+
+= Credit =
+
+By [http://robert.accettura.com Robert Accettura].
+
+= License =
+GPL v2
