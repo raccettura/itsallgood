@@ -140,6 +140,12 @@ echo ('<div id="uptime">Uptime: '.$uptime.'</div>');
 	<p>Powered by <a href="http://code.google.com/p/itsallgood/">It's All Good</a>.</p>
 </div>
 
+<script type="text/javascript">
+window.setTimeout(function(){
+	window.location.href = window.location.href;
+}, 60*1000);
+</script>
+
 <!-- End: <?php 
 // benchmark timing
 print (getmicrotime(microtime()) - getmicrotime($start));
