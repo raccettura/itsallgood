@@ -62,4 +62,10 @@ $config['checks']['https-yourdomain-com'] = array(
 */
 
 $config['logFile'] = '/var/log/itsallgood/event_log';
+
+// Your timezone, if not specified globally
+if(!ini_get('date.timezone')){
+    date_default_timezone_set('America/New_York');
+}
+
 ?>
