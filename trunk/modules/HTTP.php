@@ -20,32 +20,32 @@ class Check_HTTP extends CheckBase {
     );
 
     public function check(){
-        $this->result = $this->fetchHttpUrl($this->config['url'], $this->config['timeout']);
-        if($this->result &&  $this->analyzePage()){
+        $this->result = $this->_fetchHttpUrl($this->config['url'], $this->config['timeout']);
+        if($this->_HttpResponse &&  $this->analyzePage()){
             return true;
         }
         return false;
     }
 
     public function get_values(){
-        if(!isset($this->results)){
+        if(!isset($this->_HttpError)){
             $this->check();
         }
-        if($this->results == ''){
+        if($this->_HttpError == ''){
             return 'Success';
         }
-        return $this->results;
+        return $this->_HttpError;
     }
 
     private function analyzePage(){
         if($this->config['contains']){
-        	if(strpos($this->response, $this->config['contains']) !== false){
+        	if(strpos($this->_HttpResponse, $this->config['contains']) !== false){
                     return true;
                 }
                 return false;
         }
         else if($this->config['not']){
-                if(strpos($this->response, $this->config['not']) !== false){
+                if(strpos($this->_HttpResponse, $this->config['not']) !== false){
        	       	    return false;
        	       	}
                 return true;

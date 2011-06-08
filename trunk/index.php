@@ -122,7 +122,7 @@ function printData($value){
 	}
 	$str = '';
 
-        foreach($value['data'] as $key => $val){
+        foreach((array) $value['data'] as $key => $val){
 		$str .= htmlentities($value['labels'][$key]).': '. htmlentities($val).'<br />';
 	}
 	return $str;
