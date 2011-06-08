@@ -7,7 +7,7 @@ class CheckBase {
 
     public function __construct($config, &$logRef){
         $this->config = $config;
-	$this->logRef = $logRef;
+        $this->logRef = $logRef;
     }
 
     protected function _log($message, $verbosity = 1){
@@ -15,10 +15,10 @@ class CheckBase {
         $this->logRef->log($message, $verbosity, get_class($this));
     }
 
-    protected function fetchHttpUrl($url, $timeout=15){
+    protected function _fetchHttpUrl($url, $timeout=15){
         if(!function_exists("curl_init")){
-            $this->results = "cURL is not installed";
-            $this->_log($this->results, 2);
+            $this->_HttpError = "cURL is not installed";
+            $this->_log($this->_HttpError, 2);
             return false;
         }
 
@@ -44,9 +44,9 @@ class CheckBase {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
 	
 	
-        $this->response = curl_exec($ch);
-        $this->results = curl_error($ch);
-        if(strlen($this->results) > 0){
+        $this->_HttpResponse = curl_exec($ch);
+        $this->_HttpError = curl_error($ch);
+        if(strlen($this->_HttpResponse) > 0){
             return false;
         }
         return true;
