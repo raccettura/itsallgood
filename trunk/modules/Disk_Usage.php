@@ -14,7 +14,7 @@ class Check_Disk_Usage extends CheckBase {
 
     protected $config = array(
         'threshold' => '90%',
-	'volume'    => '/'
+        'volume'    => '/'
     );
 
     public function check(){
