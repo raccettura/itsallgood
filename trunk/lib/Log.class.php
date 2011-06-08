@@ -41,7 +41,9 @@ class Logging{
     }
 
     public function close() {
-       fclose($this->logFile);
+        if($this->logFile){
+           fclose($this->logFile);
+        }
    }
 }
 ?>
