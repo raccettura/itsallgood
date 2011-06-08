@@ -51,7 +51,7 @@ class Check_Disk_Usage extends CheckBase {
     private function getData(){
         $this->data = Array();
         $this->data['free'] = disk_free_space($this->config['volume']);
-	$this->data['total'] = disk_total_space($this->config['volume']);
+        $this->data['total'] = disk_total_space($this->config['volume']);
         return true;    
     }
 }
