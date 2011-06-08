@@ -14,13 +14,14 @@ class Check_HTTP extends CheckBase {
 
     protected $config = array(
         'url'         => 'localhost',
+        'userAgent'   => false,
         'timeout'     => 15,
         'contains'    => null,
         'not'         => null
     );
 
     public function check(){
-        $this->result = $this->fetchHttpUrl($this->config['url'], $this->config['timeout']);
+        $this->result = $this->fetchHttpUrl($this->config['url'], $this->config['timeout'], $this->config['userAgent'], &$this->HttpResponse, &$this->HttpError);
         if($this->HttpResponse &&  $this->analyzePage()){
             return true;
         }
@@ -53,10 +54,10 @@ class Check_HTTP extends CheckBase {
         return true;
     }
 
-    protected function fetchHttpUrl($url, $timeout=15){
+    protected function fetchHttpUrl($url, $timeout=15, $useragent, $response, $error){
         if(!function_exists("curl_init")){
-            $this->HttpError = "cURL is not installed";
-            $this->_log($this->HttpError, 2);
+            $error = "cURL is not installed";
+            $this->_log($error, 2);
             return false;
         }
 
@@ -74,6 +75,11 @@ class Check_HTTP extends CheckBase {
         // URL
         curl_setopt($ch, CURLOPT_URL, $url);
 	
+    	// UserAgent
+    	if($useragent != null){
+			curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+		}
+    
         // Follow location
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 	
@@ -82,9 +88,9 @@ class Check_HTTP extends CheckBase {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
 	
 	
-        $this->HttpResponse = curl_exec($ch);
-        $this->HttpError = curl_error($ch);
-        if(strlen($this->HttpResponse) > 0){
+        $response = curl_exec($ch);
+        $error = curl_error($ch);
+        if(strlen($response) > 0){
             return false;
         }
         return true;
