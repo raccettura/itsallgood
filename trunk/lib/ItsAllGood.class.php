@@ -9,7 +9,7 @@ class ItsAllGood {
     private $moduleDir = "./modules/"; // Where modules can be found
     private $selfName = "Core"; // What the log's env will read for self
 	private $toCheck = Array(); // List if specific checks to run, if empty, we'll do all in the $config
-    public $version = "0.1"; // The verison
+    public $version = "0.2"; // The verison
 
     public function __construct($config, $toCheck = Array()){
         $this->config = $config;
