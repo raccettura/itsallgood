@@ -20,7 +20,7 @@ class Check_SMTP_Ping extends CheckBase {
 
     public function check(){
         $this->connection = $this->openConnection($this->config['hostname'], $this->config['port'], $this->config['timeout']);
-	$this->closeConnection();
+        $this->closeConnection();
         if(!$this->connection){
             return false;
         }
@@ -49,7 +49,7 @@ class Check_SMTP_Ping extends CheckBase {
         if($bytesLeft['unread_bytes'] > 0) { 
             $response .= fread($this->handle, $bytesLeft['unread_bytes']); 
         }
-	$this->response = $response;
+        $this->response = $response;
         $this->_log('SMTP Response: '. $response, 2);
         return true;
     }

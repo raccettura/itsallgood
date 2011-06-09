@@ -33,7 +33,7 @@ class Check_MySQL extends CheckBase {
         }
         if ($connection->connect_error) {
             $this->error = 'Error:' . $connection->connect_errno . ': '. $connection->connect_error;
-	    return false;
+        return false;
         }
         else if (mysqli_connect_error()) {
             $this->error = 'Error:' . mysqli_connect_errno() . ': '. mysqli_connect_error();
