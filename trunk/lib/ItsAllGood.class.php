@@ -36,7 +36,7 @@ class ItsAllGood {
         $returnCheckConfig = Array();
         for($i=0;$i<sizeOf($toCheck); $i++){
             if(isset($checks[$toCheck[$i]])){
-                $returnCheckConfig[] = $checks[$toCheck[$i]];
+                $returnCheckConfig[$toCheck[$i]] = $checks[$toCheck[$i]];
             }
         }
         return $returnCheckConfig;
