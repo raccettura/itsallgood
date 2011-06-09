@@ -8,19 +8,39 @@ class ItsAllGood {
     public $allTestsPass = null; // All tests passed boolean
     private $moduleDir = "./modules/"; // Where modules can be found
     private $selfName = "Core"; // What the log's env will read for self
-
+	private $toCheck = Array(); // List if specific checks to run, if empty, we'll do all in the $config
     public $version = "0.1"; // The verison
 
-    public function __construct($config){
+    public function __construct($config, $toCheck = Array()){
         $this->config = $config;
-	$this->log = new Logging($this->config['logFile'], 2);
+        $this->toCheck = $toCheck;
+        $this->log = new Logging($this->config['logFile'], 2);
         $this->iterate_checks();
         $this->log->close();
     }
 
     private function get_checks(){
+
+        // If toCheck has a list of checks, run only those
+        if(sizeOf($this->toCheck) > 0){
+            return $this->limit_checks_to_check_list($this->config['checks'], $this->toCheck);
+        }
+    	
+        // Otherwise run all checks in config
         return $this->config['checks'];
-   }
+    }
+   
+    private function limit_checks_to_check_list($checks, $toCheck){
+
+        // Make sure all checks are valid (in the config)
+        $returnCheckConfig = Array();
+        for($i=0;$i<sizeOf($toCheck); $i++){
+            if(isset($checks[$toCheck[$i]])){
+                $returnCheckConfig[] = $checks[$toCheck[$i]];
+            }
+        }
+        return $returnCheckConfig;
+    }
 
     private function iterate_checks(){
         $this->checks = $this->get_checks();
