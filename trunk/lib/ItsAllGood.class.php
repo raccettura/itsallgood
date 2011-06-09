@@ -8,7 +8,7 @@ class ItsAllGood {
     public $allTestsPass = null; // All tests passed boolean
     private $moduleDir = "./modules/"; // Where modules can be found
     private $selfName = "Core"; // What the log's env will read for self
-	private $toCheck = Array(); // List if specific checks to run, if empty, we'll do all in the $config
+    private $toCheck = Array(); // List if specific checks to run, if empty, we'll do all in the $config
     public $version = "0.2"; // The verison
 
     public function __construct($config, $toCheck = Array()){
@@ -25,7 +25,7 @@ class ItsAllGood {
         if(sizeOf($this->toCheck) > 0){
             return $this->limit_checks_to_check_list($this->config['checks'], $this->toCheck);
         }
-    	
+        
         // Otherwise run all checks in config
         return $this->config['checks'];
     }
@@ -124,7 +124,7 @@ class ItsAllGood {
     }
 
     public function product_version(){
-	return 'ItsAllGood v'.$this->version;
+    return 'ItsAllGood v'.$this->version;
     }
 }
 

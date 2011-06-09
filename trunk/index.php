@@ -4,8 +4,8 @@ header("Expires: Sun, 28 May 1999 05:00:00 GMT"); // Date in past
 
 // benchmark timing
 function getmicrotime($t) {
-	list($usec, $sec) = explode(" ",$t);
-	return ((float)$usec + (float)$sec);
+    list($usec, $sec) = explode(" ",$t);
+    return ((float)$usec + (float)$sec);
 }
 $start = microtime();
 // end start benchmark
@@ -33,17 +33,17 @@ $itsAllGood = new ItsAllGood($config, $check);
 
 // If it's the pingdom bot, we'll just serve a message and stop, no need to send a full page.  Faster, better, cheaper.
 if(strpos($_SERVER['HTTP_USER_AGENT'], 'Pingdom') !== false){
-        if($itsAllGood->allTestsPass){
-                print 'Online And Operational';
-        } else {
-                print 'Service Failure';
-        }
-        exit;
+    if($itsAllGood->allTestsPass){
+        print 'Online And Operational';
+    } else {
+        print 'Service Failure';
+    }
+    exit;
 }
 
 if(isset($_REQUEST['output']) && strtolower($_REQUEST['output']) == 'xml'){
-	include('include/output.index.xml.inc.php');
+    include('include/output.index.xml.inc.php');
 } else {
-	include('include/output.index.html.inc.php');
+    include('include/output.index.html.inc.php');
 }
 ?>
