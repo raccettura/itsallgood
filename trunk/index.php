@@ -21,7 +21,15 @@ if(file_exists('config.php')){
     die("Config file not found.");
 }
 
-$itsAllGood = new ItsAllGood($config);
+$check = null;
+if(isset($_REQUEST['check'])){
+    $check = Array($_REQUEST['check']);
+    if(strpos($_REQUEST['check'], ',') !== false){
+        $check = explode(',', $_REQUEST['check']);
+    }
+}
+
+$itsAllGood = new ItsAllGood($config, $check);
 
 // If it's the pingdom bot, we'll just serve a message and stop, no need to send a full page.  Faster, better, cheaper.
 if(strpos($_SERVER['HTTP_USER_AGENT'], 'Pingdom') !== false){
