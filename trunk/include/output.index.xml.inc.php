@@ -4,15 +4,13 @@ print '<?xml version="1.0" encoding="utf-8"?>';
 
 ?>
 <ItsAllGood version="<?php echo htmlentities($itsAllGood->version); ?>" >
-	<summary>
-		<?php  
+	<summary><?php  
 		if($itsAllGood->allTestsPass){
 		        print "Online And Operational";
 		} else {
 		        print "Service Failure";
 		}
-		?>
-	</summary>
+	?></summary>
 	<tests>
 		<?php
 		foreach($itsAllGood->checkResults as $id => $result){
