@@ -15,7 +15,7 @@ class Check_MySQL extends CheckBase {
     protected $config = array(
         'method' => 'socket',
         'server' => 'localhost',
-        'port'    => '3308',
+        'port'    => '3306',
         'username' => 'root',
         'password' => '',
         'db' => 'test'
@@ -26,7 +26,7 @@ class Check_MySQL extends CheckBase {
             $this->message = 'Error: mysqli extension is unavailable';
             return false;
         }
-        if($this->config['server']){
+        if($this->config['server'] && $this->config['method'] != 'socket'){
              $connection = new mysqli($this->config['server'], $this->config['username'], $this->config['password'], $this->config['db'], $this->config['port']);
         } else {
              $connection = new mysqli(localhost, $this->config['username'], $this->config['password'], $this->config['db'], null, $this->config['socket']);
