@@ -46,9 +46,9 @@ class ItsAllGood {
         $this->checks = $this->get_checks();
         $this->checkResults = Array();
         $this->allTestsPass = true;
-        foreach($this->checks as $check){
+        foreach($this->checks as $id => $check){
             $results = $this->run_check($check);
-            $this->checkResults[] = $results;
+            $this->checkResults[$id] = $results;
             $this->log->log($results['title'] . " (" . $check['type'] . "): " . $results['status'] . ": " . print_r($results['values'],true), 1, $this->selfName);
             if(!$results['status']){
                 $this->allTestsPass = false;
