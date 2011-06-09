@@ -23,7 +23,7 @@ class Check_MySQL extends CheckBase {
 
     public function check(){
         if(!class_exists('MySQLi')){
-            $this->error = 'Error: mysqli extension is unavailable';
+            $this->message = 'Error: mysqli extension is unavailable';
             return false;
         }
         if($this->config['server']){
@@ -32,22 +32,22 @@ class Check_MySQL extends CheckBase {
              $connection = new mysqli(localhost, $this->config['username'], $this->config['password'], $this->config['db'], null, $this->config['socket']);
         }
         if ($connection->connect_error) {
-            $this->error = 'Error:' . $connection->connect_errno . ': '. $connection->connect_error;
+            $this->message = 'Error:' . $connection->connect_errno . ': '. $connection->connect_error;
         return false;
         }
         else if (mysqli_connect_error()) {
-            $this->error = 'Error:' . mysqli_connect_errno() . ': '. mysqli_connect_error();
+            $this->message = 'Error:' . mysqli_connect_errno() . ': '. mysqli_connect_error();
             return false;
         }
-        $this->error = 'Success';
+        $this->message = 'Success';
         return true;
     }
 
     public function get_values(){
-        if(!isset($this->error)){
+        if(!isset($this->message)){
             $this->check();
         }
-        return $this->error;
+        return $this->message;
     }
 }
 ?>
