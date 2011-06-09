@@ -3,7 +3,7 @@ header("Content-Type: application/xml");
 print '<?xml version="1.0" encoding="utf-8"?>'; 
 
 ?>
-<ItsAllGood version="<?php echo htmlentities($itsAllGood->product_version()); ?>" >
+<ItsAllGood version="<?php echo htmlentities($itsAllGood->version); ?>" >
 	<summary>
 		<?php  
 		if($itsAllGood->allTestsPass){
