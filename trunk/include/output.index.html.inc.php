@@ -53,7 +53,7 @@
 <body>
 <?php
 
-if($itsAllGood->allTestsPass){
+if($itsAllGood->allChecksPass){
         print "<h2 class=\"success\">Online And Operational</h2>";
 } else {
         print "<h2 class=\"fail\">Service Failure</h2>";
