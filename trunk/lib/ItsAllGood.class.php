@@ -124,7 +124,7 @@ class ItsAllGood {
     }
 
     public function product_version(){
-    return 'ItsAllGood v'.$this->version;
+        return 'ItsAllGood v'.$this->version;
     }
 }
 
