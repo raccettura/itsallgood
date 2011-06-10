@@ -54,7 +54,7 @@ class Check_HTTP extends CheckBase {
         return true;
     }
 
-    protected function fetchHttpUrl($url, $timeout=15, $useragent, $response, $error){
+    protected function fetchHttpUrl($url, $timeout=15, $useragent, &$response, &$error){
         if(!function_exists("curl_init")){
             $error = "cURL is not installed";
             $this->_log($error, 2);
