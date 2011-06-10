@@ -5,23 +5,23 @@ print '<?xml version="1.0" encoding="utf-8"?>';
 ?>
 <ItsAllGood version="<?php echo htmlentities($itsAllGood->version); ?>" >
     <summary><?php  
-        if($itsAllGood->allTestsPass){
+        if($itsAllGood->allChecksPass){
                 print "Online And Operational";
         } else {
                 print "Service Failure";
         }
     ?></summary>
-    <tests>
+    <checks>
         <?php
         foreach($itsAllGood->checkResults as $id => $result){
-            print "\t<test id=\"".htmlentities($id)."\">\r\n";
+            print "\t<check id=\"".htmlentities($id)."\">\r\n";
             print "\t\t<name>" . htmlentities($result['title']) . "</name>\r\n";
             print "\t\t<status>" . status($result['status']) . "</status>\r\n";
             print "\t\t<values>" . printData($result['values']) . "</values>\r\n";
-            print "\t</test>\r\n";
+            print "\t</check>\r\n";
         }
         ?>
-    </tests>
+    </checks>
     <?php
     
     $utdata = shell_exec('uptime');

@@ -5,7 +5,7 @@ class ItsAllGood {
     private $config;
     private $checks = Array();
     private $modules = Array();
-    public $allTestsPass = null; // All tests passed boolean
+    public $allChecksPass = null; // All checks passed boolean
     private $moduleDir = "./modules/"; // Where modules can be found
     private $selfName = "Core"; // What the log's env will read for self
     private $toCheck = Array(); // List if specific checks to run, if empty, we'll do all in the $config
@@ -45,13 +45,13 @@ class ItsAllGood {
     private function iterate_checks(){
         $this->checks = $this->get_checks();
         $this->checkResults = Array();
-        $this->allTestsPass = true;
+        $this->allChecksPass = true;
         foreach($this->checks as $id => $check){
             $results = $this->run_check($check);
             $this->checkResults[$id] = $results;
             $this->log->log($results['title'] . " (" . $check['type'] . "): " . $results['status'] . ": " . print_r($results['values'],true), 1, $this->selfName);
             if(!$results['status']){
-                $this->allTestsPass = false;
+                $this->allChecksPass = false;
             }
         }
     }
