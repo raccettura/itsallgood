@@ -84,7 +84,7 @@ function status($status){
     if($status){
         return 'Up';
     }
-    return 'Down';
+    return '<span class="fail">Down</span>';
 }
 
 // Formats value for pretty printing
