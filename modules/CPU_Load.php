@@ -28,14 +28,13 @@ class Check_CPU_Load extends CheckBase {
         if(!isset($this->average)){
             $this->check();
         }
-        $labels = Array(
-            "1 min avg",
-            "5 min avg",
-            "10 min avg",
-            "run proc/total proc",
-            "last proc id"
+        return array(
+            '1m' => array('1 min avg', $this->average[0]),
+            '5m' => array('5 min avg', $this->average[1]),
+            '10m' => array('10 min avg', $this->average[2]),
+            'tproc' => array('run proc/total proc', $this->average[3]),
+            'procId' => array('last proc id', $this->average[4])
         );
-        return array("labels" => $labels, "data" => $this->average);
     }
 
     private function get_cpu_avg(){
