@@ -118,12 +118,16 @@ function valStringParser($val){
 }
 
 
-$utdata = shell_exec('uptime');
-$uptime = explode(' up ', $utdata);
-$uptime = explode(',', $uptime[1]);
-$uptime = $uptime[0].', '.$uptime[1];
+if($config['showUptime']){
 
-echo ('<div id="uptime">Uptime: '.$uptime.'</div>');
+    $utdata = shell_exec('uptime');
+    $uptime = explode(' up ', $utdata);
+    $uptime = explode(',', $uptime[1]);
+    $uptime = $uptime[0].', '.$uptime[1];
+
+	echo ('<div id="uptime">Uptime: '.$uptime.'</div>');
+}
+
 
 ?>
 <div id="footer">
