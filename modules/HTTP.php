@@ -21,7 +21,7 @@ class Check_HTTP extends CheckBase {
     );
 
     public function check(){
-        $this->result = $this->fetchHttpUrl($this->config['url'], $this->config['timeout'], $this->config['userAgent'], &$this->HttpResponse, &$this->HttpError);
+        $this->result = $this->fetchHttpUrl($this->config['url'], $this->config['timeout'], $this->config['userAgent'], $this->HttpResponse, $this->HttpError);
         if($this->HttpResponse &&  $this->analyzePage()){
             return true;
         }
