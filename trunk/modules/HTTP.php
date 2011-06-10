@@ -33,7 +33,7 @@ class Check_HTTP extends CheckBase {
             $this->check();
         }
         if($this->HttpError == ''){
-            return 'Success';
+            return true;
         }
         return $this->HttpError;
     }

@@ -17,7 +17,7 @@ print '<?xml version="1.0" encoding="utf-8"?>';
             print "\t<check id=\"".htmlentities($id)."\">\r\n";
             print "\t\t<name>" . htmlentities($result['title']) . "</name>\r\n";
             print "\t\t<status>" . status($result['status']) . "</status>\r\n";
-            print "\t\t<values>" . printData($result['values']) . "</values>\r\n";
+            print "\t\t<values>" . outputData($result['values']) . "</values>\r\n";
             print "\t</check>\r\n";
         }
         ?>
@@ -37,6 +37,10 @@ print '<?xml version="1.0" encoding="utf-8"?>';
 <!-- End: <?php 
 // benchmark timing
 print (getmicrotime(microtime()) - getmicrotime($start));
+?> --><?php
+/***************************************************
+ * Utility Functions
+ ****************************************************/
 
 // Just returns "up/down"
 function status($status){
@@ -47,16 +51,41 @@ function status($status){
 }
 
 // Formats value for pretty printing
-function printData($value){
-    if(is_string($value)){
-        return $value;
-    }
+function outputData($value){
     $str = '';
+    foreach((array) $value as $key => $val){
+        // Nested <value/> nodes if we have multiple values
+        if(sizeOf($val) > 1){
+            $label = '';
+            if(sizeOf($val) > 1){
+                $label = ' label="'. htmlentities($val[0]). '"';
+                $outStr = $val[1];
+            } else {
+                $outStr = $val;
+            }
+            $str .= '<value key="' . htmlentities($key) . '" ' . $label . '>'. htmlentities(valStringParser($outStr)).'</value>';
 
-    foreach((array) $value['data'] as $key => $val){
-        $str .= '<value label="'.htmlentities($value['labels'][$key]).'">'. htmlentities($val).'</value>';
+        // Otherwise no
+        } else {
+            $str .= htmlentities(valStringParser($val));
+        }
     }
     return $str;
 }
 
-?> -->
+// Pretty prints nulls and booleans
+function valStringParser($val){
+    if(is_null($val)){
+        return "Not Run";
+    }
+    else if(is_bool($val)){
+        if($val || $val === 1){
+            return "Success";
+        } else{
+            return "Fail";
+        }
+    }
+    return $val;
+}
+
+?> 

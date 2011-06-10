@@ -40,11 +40,12 @@ class Check_Disk_Usage extends CheckBase {
         if(!isset($this->data)){
             $this->check();
         }
-        $labels = Array(
-            "free" => "Free",
-            "total" => "Total",
-            "diff" => "Difference"
+        return array(
+            'free' => array('free', $this->data[0]),
+            'total' => array('Total', $this->data[1]),
+            'diff' => array('Difference', $this->data[2])
         );
+
         return Array("labels" => $labels, "data" => $this->data);
     }
 

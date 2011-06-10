@@ -68,7 +68,7 @@ foreach($itsAllGood->checkResults as $result){
     print "\t<tr>\r\n";
     print "\t\t<td>" . htmlentities($result['title']) . "</td>\r\n";
     print "\t\t<td>" . status($result['status']) . "</td>\r\n";
-    print "\t\t<td>" . printData($result['values']) . "</td>\r\n";
+    print "\t\t<td>" . outputData($result['values']) . "</td>\r\n";
     print "\t</tr>\r\n";
 }
 print "</table>\r\n";
@@ -78,21 +78,45 @@ function status($status){
     if($status){
         return 'Up';
     }
-    return '<span class="fail">Down</span>';
+    return 'Down';
 }
 
 // Formats value for pretty printing
-function printData($value){
-    if(is_string($value)){
-        return $value;
-    }
+function outputData($value){
     $str = '';
+    foreach((array) $value as $key => $val){
+        // Nested <value/> nodes if we have multiple values
+        if(sizeOf($val) > 1){
+            $label = '';
+            if(sizeOf($val) > 1){
+                $str .= htmlentities($val[0]) . ': ' . htmlentities(valStringParser($val[1])) . "<br />";
+            } else {
+                $str .= htmlentities($val);
+            }
 
-        foreach((array) $value['data'] as $key => $val){
-        $str .= htmlentities($value['labels'][$key]).': '. htmlentities($val).'<br />';
+        // Otherwise no
+        } else {
+            $str .= htmlentities(valStringParser($val));
+        }
     }
     return $str;
 }
+
+// Pretty prints nulls and booleans
+function valStringParser($val){
+    if(is_null($val)){
+        return "Not Run";
+    }
+    else if(is_bool($val)){
+        if($val || $val === 1){
+            return "Success";
+        } else{
+            return "Fail";
+        }
+    }
+    return $val;
+}
+
 
 $utdata = shell_exec('uptime');
 $uptime = explode(' up ', $utdata);
