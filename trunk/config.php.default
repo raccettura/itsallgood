@@ -61,6 +61,8 @@ $config['checks']['https-yourdomain-com'] = array(
 );
 */
 
+$config['showUptime'] = true;
+
 $config['logFile'] = '/var/log/itsallgood/event_log';
 
 // Your timezone, if not specified globally

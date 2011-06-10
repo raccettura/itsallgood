@@ -23,13 +23,15 @@ print '<?xml version="1.0" encoding="utf-8"?>';
         ?>
     </checks>
     <?php
+    if($config['showUptime']){
     
-    $utdata = shell_exec('uptime');
-    $uptime = explode(' up ', $utdata);
-    $uptime = explode(',', $uptime[1]);
-    $uptime = $uptime[0].', '.$uptime[1];
+	    $utdata = shell_exec('uptime');
+	    $uptime = explode(' up ', $utdata);
+	    $uptime = explode(',', $uptime[1]);
+	    $uptime = $uptime[0].', '.$uptime[1];
     
-    print ("<hostUptime>".trim($uptime)."</hostUptime>\n");
+    	print ("<hostUptime>".trim($uptime)."</hostUptime>\n");
+    }
     ?>
 </ItsAllGood>
 <!-- Powered by It's All Good <http://code.google.com/p/itsallgood/> -->
