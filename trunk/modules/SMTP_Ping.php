@@ -2,15 +2,12 @@
 
 class Check_SMTP_Ping extends CheckBase {
 
-    public function about(){
-        $about = array(
-            'title' => 'SMTP Ping',
-            'author' => 'Robert Accettura',
-            'url' => 'http://code.google.com/p/itsallgood/',
-            'description' => 'Checks that the SMTP server is up',
-        );
-        return $about;
-    }
+    public $about = array(
+        'title' => 'SMTP Ping',
+        'author' => 'Robert Accettura',
+        'url' => 'http://code.google.com/p/itsallgood/',
+        'description' => 'Checks that the SMTP server is up',
+    );
 
     protected $config = array(
         'hostname' => 'localhost',

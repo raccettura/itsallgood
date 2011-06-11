@@ -2,15 +2,12 @@
 
 class Check_HTTP extends CheckBase {
 
-    public function about(){
-        $about = array(
-            'title' => 'Check HTTP',
-            'author' => 'Robert Accettura',
-            'url' => 'http://code.google.com/p/itsallgood/',
-            'description' => 'Uses curl to fetch an analyze a page to see if it was retreived successfully or not.',
-        );
-        return $about;
-    }
+    public $about = array(
+        'title' => 'Check HTTP',
+        'author' => 'Robert Accettura',
+        'url' => 'http://code.google.com/p/itsallgood/',
+        'description' => 'Uses curl to fetch an analyze a page to see if it was retreived successfully or not.',
+    );
 
     protected $config = array(
         'url'         => 'localhost',
