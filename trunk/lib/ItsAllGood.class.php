@@ -83,7 +83,9 @@ class ItsAllGood {
     }
 
     private function load_check_module($type, $config){
-        include_once($this->moduleDir.$type . ".php");
+        if(!class_exists($class_name)){
+            include($this->moduleDir.$type . ".php");
+        }
         $class_name = 'Check_'.$type;
         if(!class_exists($class_name)){
             $this->log->log("Error: Failed loading check module: " . $type, 1, $this->selfName);
