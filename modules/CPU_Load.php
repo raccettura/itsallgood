@@ -2,15 +2,12 @@
 
 class Check_CPU_Load extends CheckBase {
 
-    public function about(){
-        $about = array(
-            'title' => 'CPU Load',
-            'author' => 'Robert Accettura',
-            'url' => 'http://code.google.com/p/itsallgood/',
-            'description' => 'Check CPU load for spikes',
-        );
-        return $about;
-    }
+    public $about = array(
+        'title' => 'CPU Load',
+        'author' => 'Robert Accettura',
+        'url' => 'http://code.google.com/p/itsallgood/',
+        'description' => 'Check CPU load for spikes',
+    );
 
     protected $config = array(
         'maxCPU' => 0.9

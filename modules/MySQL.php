@@ -2,15 +2,12 @@
 
 class Check_MySQL extends CheckBase {
 
-    public function about(){
-        $about = array(
-            'title' => 'MySQL Check',
-            'author' => 'Robert Accettura',
-            'url' => 'http://code.google.com/p/itsallgood/',
-            'description' => 'Checks that the MySQL server is up and operational.',
-        );
-        return $about;
-    }
+    public $about = array(
+        'title' => 'MySQL Check',
+        'author' => 'Robert Accettura',
+        'url' => 'http://code.google.com/p/itsallgood/',
+        'description' => 'Checks that the MySQL server is up and operational.',
+    );
 
     protected $config = array(
         'method' => 'socket',

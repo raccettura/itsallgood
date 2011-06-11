@@ -2,15 +2,12 @@
 
 class Check_Disk_Usage extends CheckBase {
 
-    public function about(){
-        $about = array(
-            'title' => 'Disk Usage',
-            'author' => 'Robert Accettura',
-            'url' => 'http://code.google.com/p/itsallgood/',
-            'description' => 'Check Disk Usage that it doesn\'t exceed a threshold',
-        );
-        return $about;
-    }
+    public $about = array(
+        'title' => 'Disk Usage',
+        'author' => 'Robert Accettura',
+        'url' => 'http://code.google.com/p/itsallgood/',
+        'description' => 'Check Disk Usage that it doesn\'t exceed a threshold',
+    );
 
     protected $config = array(
         'threshold' => '90%',
