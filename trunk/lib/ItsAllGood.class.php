@@ -5,6 +5,7 @@ class ItsAllGood {
     private $config;
     private $checks = Array();
     private $modules = Array();
+    private $loadedModules = Array(); // All modules loaded into the system already
     public $allChecksPass = null; // All checks passed boolean
     private $moduleDir = "./modules/"; // Where modules can be found
     private $selfName = "Core"; // What the log's env will read for self
@@ -83,7 +84,10 @@ class ItsAllGood {
     }
 
     private function load_check_module($type, $config){
-        include($this->moduleDir.$type . ".php");
+        if(!in_array($type, $this->loadedModules)){
+            include_once($this->moduleDir.$type . ".php");
+            $this->loadedModules[] = $type;
+        }
         $class_name = 'Check_'.$type;
         if(!class_exists($class_name)){
             $this->log->log("Error: Failed loading check module: " . $type, 1, $this->selfName);
