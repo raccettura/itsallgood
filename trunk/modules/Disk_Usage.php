@@ -41,19 +41,25 @@ class Check_Disk_Usage extends CheckBase {
             $this->check();
         }
         return array(
-            'free' => array('free', $this->data['free']),
-            'total' => array('Total', $this->data['total']),
-            'diff' => array('Difference', $this->data['diff'])
+            'free' => array('Free', $this->prettyPrintSize($this->data['free'])),
+            'total' => array('Total', $this->prettyPrintSize($this->data['total'])),
+            'diff' => array('Used Pct', round($this->data['diff'],2)."%")
         );
 
         return Array("labels" => $labels, "data" => $this->data);
+    }
+    
+    private function prettyPrintSize($bytes, $round = 2){
+	    $type = array( 'B', 'KB', 'MB', 'GB', 'TB', 'PB');
+	    for($i=0; $bytes >= 1024 && $i<sizeOf($type)-1; $bytes /= 1024, $i++ );
+		return round($bytes, $round) . " " . $type[$i];
     }
 
     private function getData(){
         $this->data = Array();
         $this->data['free'] = disk_free_space($this->config['volume']);
         $this->data['total'] = disk_total_space($this->config['volume']);
-        return true;    
+        return true;
     }
 }
 ?>
