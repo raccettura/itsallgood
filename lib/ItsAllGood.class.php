@@ -15,9 +15,13 @@ class ItsAllGood {
     public function __construct($config, $toCheck = Array()){
         $this->config = $config;
         $this->toCheck = $toCheck;
-        $this->log = new Logging($this->config['logFile'], 2);
+        if($this->config['logFile'] != false){
+            $this->log = new Logging($this->config['logFile'], 2);
+        }
         $this->iterate_checks();
-        $this->log->close();
+        if($this->config['logFile'] != false){
+            $this->log->close();
+        }
     }
 
     private function get_checks(){
