@@ -53,7 +53,7 @@ class Check_CPU_Load extends CheckBase {
 
         // This means we're running some sort of Linux based OS
         if(strpos($osString, 'linux') !== false){
-            $response_string = shell_exec('cat /proc/loadavg');
+            $response_string = file_get_contents('/proc/loadavg');
             list($this->average['1m'], $this->average['5m'], $this->average['10m'], $this->average['tproc'], $this->average['procId']) = explode(' ', $response_string);
             return true;
         }
