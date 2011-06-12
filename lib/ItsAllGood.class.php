@@ -85,7 +85,7 @@ class ItsAllGood {
 
     private function load_check_module($type, $config){
         if(!in_array($type, $this->loadedModules)){
-            include_once($this->moduleDir.$type . ".php");
+            include($this->moduleDir.$type . ".php");
             $this->loadedModules[] = $type;
         }
         $class_name = 'Check_'.$type;
