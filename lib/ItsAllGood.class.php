@@ -68,6 +68,9 @@ class ItsAllGood {
         }
 
         $check_module = $this->load_check_module($check['type'], $check['config']);
+        if(!$check_module){
+            return false;
+        }
 
         $this->results = Array();
 
@@ -88,11 +91,16 @@ class ItsAllGood {
     }
 
     private function load_check_module($type, $config){
-        if(!in_array($type, $this->loadedModules)){
+        $class_name = 'Check_'.$type;
+        
+        // We check ourselves if the module is loaded.  We also check if the class exists since it's possible for
+        // a module to extend another module.  loadedModules is still used rather than just check class name so we
+        // have an index of all modules loaded for other (future) uses.
+        if(!in_array($type, $this->loadedModules) && !class_exists($class_name)){
             include($this->moduleDir.$type . ".php");
             $this->loadedModules[] = $type;
         }
-        $class_name = 'Check_'.$type;
+
         if(!class_exists($class_name)){
             $this->log->log("Error: Failed loading check module: " . $type, 1, $this->selfName);
             return false;
