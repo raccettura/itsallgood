@@ -1,0 +1,17 @@
+0.2 - June 25, 2011
+- Feature: New more readable Web UI has better contrast and spacing to make things easier to read on mobile or a desktop.
+- Feature: Multiple output modes: html (default) and xml using the output query argument (example: output=xml)
+- Feature: Ability to run specific checks using the check=checkName query argument. Multiple checks comma delimited
+- Feature: The built in CPU Load module now supports Darwin/BSD
+- Feature: Failures result in "!!!!" in the beginning of the Web UI's title to make it easier to detect in a browser tab.
+- Feature: Improved module API response handling so that you can use key/value responses (this is awesome when using xml output mode).
+- Feature: Ability to disable logging
+- Feature: Ability to disable uptime display
+- Fix: Slightly faster
+- Fix: Better sanity checking for invalid configs and checks.
+- Fix: Checks now correctly overwrite default configs.
+- Fix: If the log wasn't opened, don't attempt to close an invalid handle.
+- Fix: Set default timezone if not defined.
+
+0.1 - June 12, 2010
+- Initial Public Release
