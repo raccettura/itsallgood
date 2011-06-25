@@ -108,12 +108,12 @@ class ItsAllGood {
         return new $class_name($config, $this->log);
     }
 
-    private function is_check_module_installed($module){
+    public function is_check_module_installed($module){
         $modules = $this->list_installed_modules();
         return in_array($module, $modules);
     }
 
-    public function module_filter($value){
+    private function module_filter($value){
         // This is just the filesystem
         if($value == "." || $value == ".."){
             return false;
@@ -126,7 +126,7 @@ class ItsAllGood {
         return true;
     }
 
-    public function module_cleaner($value){
+    private function module_cleaner($value){
         return substr($value, 0, strlen($value)-4);
     }
 
