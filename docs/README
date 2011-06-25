@@ -55,19 +55,17 @@ API
 /* tests always start with 'Check_' and extend CheckBase */
 class Check_TEST_NAME extends CheckBase {
 
-    public function about(){
+    public $about = array(
         // Some basic metadata we can query
-        $about = array(
-            'title' => 'NAME',
-            'author' => 'YOUR NAME',
-            'url' => 'URL FOR PLUGIN',
-            'description' => 'DESCRIPTION',
-        );
-        return $about;
-    }
+        'title' => 'MODULE NAME',
+        'author' => 'YOUR NAME',
+        'url' => 'URL  FOR YOUR MODULE',
+        'description' => 'BRIEF DESCRIPTION OF YOUR MODULE',
+    );
 
     protected $config = array(
-        'option' => 'default value'
+        'option' => 'default value',
+        'option2' => 'default value'
     );
 
     public function check(){
@@ -80,22 +78,33 @@ class Check_TEST_NAME extends CheckBase {
     }
 
     public function get_values(){
-        // Get the value(s) for this test
-        return $value;
+        // Get the value(s) for this test and return as a string
+        //return $value;
+        
+        // Or if you want you can make a more complex key value relationship.
+        // This isn't so impressive when using the webUI but in xml view, it's awesome.
+        //return array(
+        //    'free' => array('Free', $this->prettyPrintSize($this->data['free'])),
+        //    'total' => array('Total', $this->prettyPrintSize($this->data['total'])),
+        //    'diff' => array('Used Pct', round($this->data['diff'],2)."%")
+        //);
     }
+    
+    // You can put as many helper methods here as you want, reference other classes, etc.
 }
 
 The CheckBase class modules extend contains a log() method which can be used for dumping info to the standard log file:
     _log($message, $verbosity)
 
     Args:
-        $messge = the message you want to save
+        $message = the message you want to save
         $verbosity = 1 - info, 2 - detail, 3 - debug
+
 
 Changelog
 --------------------------------
-0.1 - 06/12/2010
- - Initial Release of source code
+See changelog
+
 
 License
 --------------------------------
