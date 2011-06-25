@@ -91,9 +91,9 @@
 <?php
 
 if($itsAllGood->allChecksPass){
-        print "<h2 class=\"success\">Online And Operational</h2>";
+        print "<h2 class=\"success\">Online And Operational</h2>\r\n";
 } else {
-        print "<h2 class=\"fail\">Service Failure</h2>";
+        print "<h2 class=\"fail\">Service Failure</h2>\r\n";
 }
 
 print "<table id=\"stats\">\r\n";
