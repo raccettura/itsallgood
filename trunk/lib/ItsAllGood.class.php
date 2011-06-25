@@ -121,7 +121,7 @@ class ItsAllGood {
 
     private function module_filter($value){
         // This is just the filesystem
-        if($value == "." || $value == ".."){
+        if($value == "." || $value == ".." || $value[0] == '.'){
             return false;
         }
 
