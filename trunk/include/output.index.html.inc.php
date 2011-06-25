@@ -8,6 +8,7 @@
 			    print "<title>!!!!! It's All Good</title>";
 		}
 	?>
+	
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="robots" content="noindex" />
     <meta name="generator" content="<?php echo htmlentities($itsAllGood->product_version()); ?>"/>
