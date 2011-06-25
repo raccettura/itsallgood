@@ -53,6 +53,12 @@ class ItsAllGood {
         $this->allChecksPass = true;
         foreach($this->checks as $id => $check){
             $results = $this->run_check($check);
+            
+            // If results is boolean false, that means the module faled to execute, we shouldn't reveal in the UI.
+            // The logs will have a record however for an admin.
+            if($results === false){
+            	continue;
+            }
             $this->checkResults[$id] = $results;
             $this->log->log($results['title'] . " (" . $check['type'] . "): " . $results['status'] . ": " . print_r($results['values'],true), 1, $this->selfName);
             if(!$results['status']){
