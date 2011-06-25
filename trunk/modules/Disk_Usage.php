@@ -42,8 +42,6 @@ class Check_Disk_Usage extends CheckBase {
             'total' => array('Total', $this->prettyPrintSize($this->data['total'])),
             'diff' => array('Used Pct', round($this->data['diff'],2)."%")
         );
-
-        return Array("labels" => $labels, "data" => $this->data);
     }
     
     private function prettyPrintSize($bytes, $round = 2){
