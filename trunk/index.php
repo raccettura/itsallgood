@@ -33,7 +33,7 @@ $itsAllGood = new ItsAllGood($config, $check);
 
 // If it's the pingdom bot, we'll just serve a message and stop, no need to send a full page.  Faster, better, cheaper.
 if(strpos($_SERVER['HTTP_USER_AGENT'], 'Pingdom') !== false){
-    if($itsAllGood->allTestsPass){
+    if($itsAllGood->allChecksPass){
         print 'Online And Operational';
     } else {
         print 'Service Failure';
