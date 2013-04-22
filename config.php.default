@@ -23,6 +23,14 @@ $config['checks']['disk'] = array(
 );
 
 
+$config['checks']['memory'] = array(
+    'type' => 'Memory',
+    'config' => array(
+       'threshold' => '25%'
+    ),
+    'label' => 'Memory'
+);
+
 /*
 $config['checks']['db'] = array(
     'type' => 'MySQL',

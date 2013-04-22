@@ -18,7 +18,7 @@ class Check_Disk_Usage extends CheckBase {
         $this->getData();
 
         if(substr($this->config['threshold'], -1) == '%'){
-            $percentage = substr($this->config['threshold'], 0, -1);
+            $percentage = $this->_percecentToInteger($this->config['threshold']);
             $this->data['diff'] =  100 - ($this->data['free']/$this->data['total'])*100;
             if($this->data['diff'] > $percentage){
                 return false;

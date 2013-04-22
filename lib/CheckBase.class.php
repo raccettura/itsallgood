@@ -14,6 +14,10 @@ class CheckBase {
         // We pass the name of the class in as the environment
         $this->logRef->log($message, $verbosity, get_class($this));
     }
+
+    protected function _percecentToInteger($percentage){
+       return substr($percentage, 0, -1);
+    }
 }
 
 ?>
